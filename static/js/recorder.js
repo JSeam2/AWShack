@@ -66,6 +66,22 @@ DEALINGS IN THE SOFTWARE.
 
     this.stop = function(){
       recording = false;
+
+	  Recorder.setupDownload = function(blob, filename){
+		var url = (window.URL || window.webkitURL).createObjectURL(blob);
+		var link = document.getElementById("save");
+		link.href = url;
+		link.download = filename || 'output.wav';
+
+		// send blob to api endpoints to get data
+		var httpRequest = new XMLHttpRequest();
+		httpRequest.onload = function() {
+			detectedText = this.responseText;
+			$("#p_caption").text(detectedText);
+		}
+		httpRequest.open("POST", "http://localhost:5000/uploads", true);
+		httpRequest.send(blob);
+	  }
     }
 
     this.clear = function(){
@@ -105,13 +121,6 @@ DEALINGS IN THE SOFTWARE.
     source.connect(this.node);
     this.node.connect(this.context.destination);   // if the script node is not connected to an output the "onaudioprocess" event is not triggered in chrome.
   };
-
-  Recorder.setupDownload = function(blob, filename){
-    var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    var link = document.getElementById("save");
-    link.href = url;
-    link.download = filename || 'output.wav';
-  }
 
   window.Recorder = Recorder;
 
