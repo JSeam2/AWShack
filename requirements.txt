@@ -47,5 +47,5 @@ simplejson==3.15.0
 six==1.11.0
 sklearn==0.0
 urllib3==1.23
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 WTForms==2.2.1
