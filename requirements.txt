@@ -9,7 +9,7 @@ docutils==0.14
 eventlet==0.23.0
 eyeD3==0.8.7
 Flask==1.0.2
-Flask-Cors==3.0.6
+Flask-Cors==3.0.9
 Flask-SocketIO==3.0.1
 Flask-WTF==0.14.2
 google-api-core==1.2.1
